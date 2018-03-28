@@ -4,9 +4,9 @@ const getUsersChoice = (userInput) =>{
   userInput = userInput.toLowerCase();
   // display a message if user's input is invalid
   if (userInput != 'rock' && userInput != 'paper'
-     && userInput != 'scissors')
+     && userInput != 'scissors' && userInput != 'bomb')
     {
-      console.log('ERROR: User must input rock, paper or scissors');
+      console.log('ERROR: User must input bomb, rock, paper or scissors');
     }
   // return user input to next function
   else
@@ -17,10 +17,11 @@ const getUsersChoice = (userInput) =>{
 
 // testing getUsersChoice:
 	// test function works with correct parameter values:
-console.log('getUsersChoice Test, expected output: paper, rock, scissors.');
+console.log('getUsersChoice Test, expected output: paper, rock, scissors, bomb.');
 console.log(getUsersChoice('PapeR'));
 console.log(getUsersChoice('ROCK'));
 console.log(getUsersChoice('scissors'));
+console.log(getUsersChoice('bOMB'));
 console.log('------------------------------');
 // test function displays error message with invaid parameter values:
 console.log('getUsersChoice Test, expected output: two error messages.');
@@ -91,7 +92,7 @@ const determineWinner = (userInput, computerInput) =>{
       }
   }
   	// third case: user chose scissors
-  else
+  else if
     {
       if (computerInput == 'paper')
         {
@@ -102,23 +103,36 @@ const determineWinner = (userInput, computerInput) =>{
           return 'The computer is the winner of this match.';
         }
     }
+    else
+    {
+      return 'Bomb applied: You win this match!';
+    }
 }; // end determineWinner function
 
+// testing Bomb
+console.log('determineWinner Test, expected output: user wins 3 times with bomb.');
+	// test correct output for bomb cheat
+console.log(determineWinner('bomb', 'paper'));
+console.log(determineWinner('bomb', 'rock'));
+console.log(determineWinner('bomb', 'scissors'));
+console.log('------------------------------');
+// end bomb testing
+
 // testing determineWinner:
-console.log('determineWinner Test, expected output: tie, tie, tie.')
+console.log('determineWinner Test, expected output: tie, tie, tie.');
 	// test correct output for a tie
 console.log(determineWinner('paper', 'paper'));
 console.log(determineWinner('rock', 'rock'));
 console.log(determineWinner('scissors', 'scissors'));
 console.log('------------------------------');
 	// test correct output for computer is the winner
-console.log('determineWinner Test, expected output: computer wins 3 times.')
+console.log('determineWinner Test, expected output: computer wins 3 times.');
 console.log(determineWinner('paper', 'scissors'));
 console.log(determineWinner('rock', 'paper'));
 console.log(determineWinner('scissors', 'rock'));
 console.log('------------------------------');
 	// test correct output for user is the winner
-console.log('determineWinner Test, expected output: user wins 3 times.')
+console.log('determineWinner Test, expected output: user wins 3 times.');
 console.log(determineWinner('rock', 'scissors'));
 console.log(determineWinner('scissors', 'paper'));
 console.log(determineWinner('paper', 'rock'));
@@ -139,6 +153,8 @@ const playGame = (userInput) =>{
 console.log('playGame Test, expected output: error message.');
 console.log(playGame('carmela from Sopranos'));
 console.log('------------------------------');
+console.log('playGame Test, expected output: user wins with bomb.');
+console.log(playGame('bomb'));
 console.log('playGame Test, expected output: winner or ties.');
 console.log(playGame('rock'));
 console.log(playGame('paper'));
